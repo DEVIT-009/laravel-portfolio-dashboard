@@ -1,3 +1,10 @@
+@php
+    $id = $department->id;
+    $name = $department->name;
+    $description = $department->description;
+    $status = $department->status;
+@endphp
+
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <div class="content-header">
@@ -5,7 +12,7 @@
             <div class="row mb-2">
                 <div class="col-sm-6">
                     <h1 class="m-0">Edit-Department</h1>
-                </div><!-- /.col -->
+                </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item">
@@ -15,9 +22,9 @@
                         </li>
                         <li class="breadcrumb-item active">Editing</li>
                     </ol>
-                </div><!-- /.col -->
-            </div><!-- /.row -->
-        </div><!-- /.container-fluid -->
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- Main content -->
@@ -31,22 +38,22 @@
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
-                            <form action="#" method="POST">
+                            <form action="{{ route('backend.department.update', $id) }}" method="POST">
                                 @csrf
                                 @method('PUT')
 
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="department_code">DepartmentCode:</label>
+                                            <label for="id">Department ID:</label>
                                             <input type="text"
                                                 class="form-control"
-                                                id="department_code"
-                                                name="department_code"
-                                                value="{{ old('department_code', $department->department_code ?? 'DPT20250822080743-EF9BA7') }}"
+                                                id="id"
+                                                name="id"
+                                                value="{{ $id ?? '' }}"
                                                 readonly
                                                 style="background-color: #e9ecef;">
-                                            @error('department_code')
+                                            @error('id')
                                                 <span class="text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
@@ -54,17 +61,17 @@
 
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="department_name">
-                                                DepartmentName: <span class="text-danger">*</span>
+                                            <label for="name">
+                                                Department Name: <span class="text-danger">*</span>
                                             </label>
                                             <input type="text"
-                                                class="form-control @error('department_name') is-invalid @enderror"
-                                                id="department_name"
-                                                name="department_name"
-                                                value="{{ old('department_name', $department->department_name ?? 'Research and Develop') }}"
-                                                placeholder="Enter ..."
+                                                class="form-control @error('name') is-invalid @enderror"
+                                                id="name"
+                                                name="name"
+                                                value="{{ old('name', $name ?? '') }}"
+                                                placeholder="Aa"
                                                 required>
-                                            @error('department_name')
+                                            @error('name')
                                                 <span class="text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
@@ -77,7 +84,7 @@
                                               id="description"
                                               name="description"
                                               rows="4"
-                                              placeholder="Enter ...">{{ old('description', $department->description ?? 'Description about Research and Develop') }}</textarea>
+                                              placeholder="Aa">{{ old('description', $description ?? '') }}</textarea>
                                     @error('description')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
@@ -91,7 +98,7 @@
                                                name="status"
                                                id="status_active"
                                                value="active"
-                                               {{ old('status', $department->status ?? 'active') == 'active' ? 'checked' : '' }}>
+                                               {{ old('status', $status ?? 'active') == 'active' ? 'checked' : '' }}>
                                         <label class="form-check-label" for="status_active">
                                             Active
                                         </label>
@@ -102,7 +109,7 @@
                                                name="status"
                                                id="status_inactive"
                                                value="inactive"
-                                               {{ old('status', $department->status ?? 'active') == 'inactive' ? 'checked' : '' }}>
+                                               {{ old('status', $status ?? 'active') == 'inactive' ? 'checked' : '' }}>
                                         <label class="form-check-label" for="status_inactive">
                                             Inactive
                                         </label>
@@ -122,14 +129,9 @@
                                 </div>
                             </form>
                         </div>
-                        <!-- /.card-body -->
                     </div>
-                    <!-- /.card -->
                 </div>
             </div>
-            <!-- /.row -->
-        </div><!-- /.container-fluid -->
+        </div>
     </div>
-    <!-- /.content -->
 </div>
-<!-- /.content-wrapper -->

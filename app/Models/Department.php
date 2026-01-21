@@ -8,12 +8,14 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Department extends Model
 {
     use SoftDeletes;
-
     protected $fillable = [
+        'id',
         'name',
         'description',
+        'status',
         'created_by',
         'updated_by',
         'deleted_by',
     ];
 }
+

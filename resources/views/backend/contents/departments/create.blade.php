@@ -5,19 +5,19 @@
             <div class="row mb-2">
                 <div class="col-sm-6">
                     <h1 class="m-0">Create-Department</h1>
-                </div><!-- /.col -->
+                </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item">
-                            <a href="#">
+                            <a href="{{ route('backend.department.index') }}">
                                 <i class="fas fa-arrow-left"></i> Department
                             </a>
                         </li>
                         <li class="breadcrumb-item active">Create</li>
                     </ol>
-                </div><!-- /.col -->
-            </div><!-- /.row -->
-        </div><!-- /.container-fluid -->
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- Main content -->
@@ -29,23 +29,22 @@
                         <div class="card-header bg-dark">
                             <h3 class="card-title text-white">Create Form</h3>
                         </div>
-                        <!-- /.card-header -->
                         <div class="card-body">
-                            <form action="#" method="POST">
+                            <form action="{{ route('backend.department.store') }}" method="POST">
                                 @csrf
 
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="department_code">Department Code:</label>
+                                            <label for="id">Department ID:</label>
                                             <input type="text"
                                                 class="form-control"
-                                                id="department_code"
-                                                name="department_code"
-                                                value="{{ old('department_code', 'DPT' . date('YmdHis') . '-' . strtoupper(substr(md5(uniqid(rand(), true)), 0, 6))) }}"
+                                                id="id"
+                                                name="id"
+                                                value="Auto-Generate"
                                                 readonly
                                                 style="background-color: #e9ecef;">
-                                            @error('department_code')
+                                            @error('id')
                                                 <span class="text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
@@ -53,17 +52,17 @@
 
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="department_name">
+                                            <label for="name">
                                                 Department Name: <span class="text-danger">*</span>
                                             </label>
                                             <input type="text"
-                                                class="form-control @error('department_name') is-invalid @enderror"
-                                                id="department_name"
-                                                name="department_name"
-                                                value="{{ old('department_name') }}"
-                                                placeholder="Enter ..."
-                                                required>
-                                            @error('department_name')
+                                                class="form-control @error('name') is-invalid @enderror"
+                                                id="name"
+                                                name="name"
+                                               value="{{ old('name') }}"
+                                                placeholder="Aa"
+                                                >
+                                            @error('name')
                                                 <span class="text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
@@ -76,7 +75,7 @@
                                               id="description"
                                               name="description"
                                               rows="4"
-                                              placeholder="Enter ...">{{ old('description') }}</textarea>
+                                              placeholder="Text Description Here">{{ old('description') }}</textarea>
                                     @error('description')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
@@ -112,23 +111,21 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <button type="submit" class="btn btn-primary">
-                                        <i class="fas fa-plus"></i> Save
-                                    </button>
-                                    <a href="#" class="btn btn-secondary">
-                                        Cancel
-                                    </a>
+                                    <div class="btn-group" role="group" aria-label="Save actions">
+                                        <button type="submit" name="action" value="save_close" class="btn btn-primary px-4">
+                                            Save &amp; Close
+                                        </button>
+                                        <button type="submit" name="action" value="save" class="btn btn-secondary px-4">
+                                            Save
+                                        </button>
+                                    </div>
+                                    <button type="reset" class="btn btn-default">Cancel</button>
                                 </div>
                             </form>
                         </div>
-                        <!-- /.card-body -->
                     </div>
-                    <!-- /.card -->
                 </div>
             </div>
-            <!-- /.row -->
-        </div><!-- /.container-fluid -->
+        </div>
     </div>
-    <!-- /.content -->
 </div>
-<!-- /.content-wrapper -->

@@ -9,7 +9,7 @@
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item">
-                            <a href="{{ route('backend.contents.departments.list') }}">
+                            <a href="{{ route('backend.department.index') }}">
                                 <i class="fas fa-arrow-left"></i> Departments
                             </a>
                         </li>
@@ -34,11 +34,11 @@
                             <div class="row mb-3">
                                 <div class="col-md-6">
                                     <strong>Department Code:</strong>
-                                    <p>{{ $department->department_code ?? 'Code ERROR'}}</p>
+                                    <p>{{ $department->id ?? 'Code ERROR'}}</p>
                                 </div>
                                 <div class="col-md-6">
                                     <strong>Department Name:</strong>
-                                    <p>{{ $department->department_name ?? 'Name ERROR'}}</p>
+                                    <p>{{ $department->name ?? 'Name ERROR'}}</p>
                                 </div>
                             </div>
 
@@ -49,7 +49,7 @@
 
                             <div class="mb-3">
                                 <strong>Status:</strong>
-                                @if($department->status ?? false === 'active')
+                                @if($department->status === 'active')
                                     <span class="badge badge-success">Active</span>
                                 @else
                                     <span class="badge badge-secondary">Inactive</span>
@@ -57,10 +57,10 @@
                             </div>
 
                             <div class="form-group">
-                                <a href="{{ route('backend.contents.departments.update', $department->id ?? 1) }}" class="btn btn-primary">
+                                <a href="{{ route('backend.department.edit', $department->id ?? 1) }}" class="btn btn-primary">
                                     <i class="fas fa-edit"></i> Edit
                                 </a>
-                                <a href="{{ route('backend.contents.departments.list') }}" class="btn btn-secondary">
+                                <a href="{{ route('backend.department.index') }}" class="btn btn-secondary">
                                     Back
                                 </a>
                             </div>

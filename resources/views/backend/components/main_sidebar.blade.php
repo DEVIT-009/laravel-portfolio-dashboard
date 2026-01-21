@@ -40,37 +40,30 @@
                         <p>Dashboard</p>
                     </a>
                 </li>
-                <li class="nav-item {{ request()->routeIs('backend.contents.departments.*') ? 'menu-open' : '' }}">
-                    <a href="#" class="nav-link {{ request()->routeIs('backend.contents.departments.*') ? 'active' : '' }}">
-                    <i class="nav-icon fas fa-copy"></i>
-                    <p>
-                        Departments
-                        <i class="fas fa-angle-left right"></i>
-                    </p>
+                <li class="nav-item {{ request()->routeIs('backend.department.*') ? 'menu-open' : '' }}">
+                    <a href="#" class="nav-link {{ request()->routeIs('backend.department.*') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-copy"></i>
+                        <p>
+                            Departments
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
                     </a>
                     <ul class="nav nav-treeview">
+                        <!-- List -->
                         <li class="nav-item">
-                            <a href="{{ route('backend.contents.departments.list') }}" class="nav-link {{ request()->routeIs('backend.contents.departments.list') ? 'active' : '' }}">
+                            <a href="{{ route('backend.department.index') }}"
+                               class="nav-link {{ request()->routeIs('backend.department.index') ? 'active' : '' }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>List Departments</p>
                             </a>
                         </li>
+
+                        <!-- Create -->
                         <li class="nav-item">
-                            <a href="{{ route('backend.contents.departments.create') }}" class="nav-link {{ request()->routeIs('backend.contents.departments.create') ? 'active' : '' }}">
+                            <a href="{{ route('backend.department.create') }}"
+                               class="nav-link {{ request()->routeIs('backend.department.create') ? 'active' : '' }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Create Department</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('backend.contents.departments.update')}}" class="nav-link {{ request()->routeIs('backend.contents.departments.update') ? 'active' : '' }}">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Update Department</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('backend.contents.departments.detail') }}" class="nav-link {{ request()->routeIs('backend.contents.departments.detail') ? 'active' : '' }}">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Detail Department</p>
                             </a>
                         </li>
                     </ul>

@@ -16,6 +16,7 @@ return new class extends Migration
 
             $table->string('name');
             $table->string('description')->nullable();
+            $table->enum('status', ['active', 'inactive'])->default('active');
 
             // audit user fields
             $table->string('created_by')->nullable();

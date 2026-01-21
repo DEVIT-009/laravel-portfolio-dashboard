@@ -2,15 +2,14 @@
 
 use Illuminate\Support\Facades\Route;
 
-use \App\Http\Controllers\frontend\HomeController;
-use \App\Http\Controllers\frontend\ContactController;
-use \App\Http\Controllers\frontend\ServiceController;
-use \App\Http\Controllers\frontend\AboutController;
-use \App\Http\Controllers\frontend\PortfolioController;
-use \App\Http\Controllers\frontend\TeamController;
-
-use \App\Http\Controllers\backend\DashboardController;
-use \App\Http\Controllers\backend\DepartmentController;
+use App\Http\Controllers\Frontend\HomeController;
+use App\Http\Controllers\Frontend\ContactController;
+use App\Http\Controllers\Frontend\ServiceController;
+use App\Http\Controllers\Frontend\AboutController;
+use App\Http\Controllers\Frontend\PortfolioController;
+use App\Http\Controllers\Frontend\TeamController;
+use App\Http\Controllers\Backend\DashboardController;
+use App\Http\Controllers\Backend\DepartmentController;
 
 // Frontend
 Route::controller(HomeController::class) -> group(function () {
@@ -33,24 +32,33 @@ Route::controller(TeamController::class) -> group(function () {
 });
 
 // Backend
-Route::controller(DashboardController::class)->group(function () {
-    Route::get('/dashboard', 'index')->name('backend.index');
-});
+Route::prefix('admin/v1')->name('backend.')->group(function () {
 
-Route::controller(DepartmentController::class)->group(function () {
-    Route::get('/departments/list', 'index')
-        ->name('backend.contents.departments.list')
-        ->defaults('action', 'list');
+    // Dashboard
+    Route::controller(DashboardController::class)->group(function () {
+        Route::get('/dashboard', 'index')->name('index');
+    });
 
-    Route::get('/departments/create', 'index')
-        ->name('backend.contents.departments.create')
-        ->defaults('action', 'create');
+    // Departments
+    Route::controller(DepartmentController::class)
+        ->prefix('/departments')
+        ->name('department.')
+        ->group(function () {
+            // List
+            Route::get('/', 'index')->name('index');
 
-    Route::get('/departments/update', 'index')
-        ->name('backend.contents.departments.update')
-        ->defaults('action', 'update');
+            // Create
+            Route::get('/create', 'create')->name('create'); //Page
+            Route::post('/', 'store')->name('store'); // Process
 
-    Route::get('/departments/detail', 'index')
-        ->name('backend.contents.departments.detail')
-        ->defaults('action', 'detail');
+            // Detail
+            Route::get('/{department}', 'detail')->name('detail');
+
+            // Update
+            Route::get('/{department}/edit', 'edit')->name('edit'); // Page
+            Route::put('/{department}', 'update')->name('update'); // Process
+
+            // Delete
+            Route::delete('/{department}', 'destroy')->name('destroy');
+        });
 });
