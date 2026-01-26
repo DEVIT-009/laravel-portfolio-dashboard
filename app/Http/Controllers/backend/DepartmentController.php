@@ -129,6 +129,10 @@ class DepartmentController extends Controller
      */
     public function destroy(Department $department)
     {
+        $department->update([
+            'deleted_by' => auth()->user()->name ?? 'system',
+        ]);
+
         $department->delete();
 
         return redirect()

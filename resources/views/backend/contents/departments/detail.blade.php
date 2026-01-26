@@ -33,7 +33,7 @@
                         <div class="card-body">
                             <div class="row mb-3">
                                 <div class="col-md-6">
-                                    <strong>Department Code:</strong>
+                                    <strong>Department ID:</strong>
                                     <p>{{ $department->id ?? 'Code ERROR'}}</p>
                                 </div>
                                 <div class="col-md-6">

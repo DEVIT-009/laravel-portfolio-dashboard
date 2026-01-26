@@ -77,9 +77,15 @@
                                             >
                                                 <i class="fas fa-user-edit"></i> Edit
                                             </a>
-                                            <form action="" method="POST" class="d-inline" onsubmit="return confirm('Are you sure you want to delete this department?');">
+                                            <form
+                                                action="{{ route('backend.department.destroy', $department->id) }}"
+                                                method="POST"
+                                                class="d-inline"
+                                                onsubmit="return confirm('Are you sure you want to delete this department?');"
+                                            >
                                                 @csrf
                                                 @method('DELETE')
+
                                                 <button type="submit" class="btn btn-outline-danger btn-sm" title="Delete">
                                                     <i class="fas fa-user-times"></i> Delete
                                                 </button>
